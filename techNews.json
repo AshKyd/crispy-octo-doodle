@@ -1,0 +1,158 @@
+{
+  "strategies": {
+    "lastUpdatedFeed": "https://sendne.ws/@tech.rss",
+    "destination": [
+      { "name": "textFile" },
+      {
+        "name": "mastodon",
+        "options": {
+          "visibility": "unlisted"
+        }
+      }
+    ]
+  },
+  "items": {
+    "theverge": {
+      "url": "https://www.theverge.com/rss/full.xml",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "descriptionAfterLandmark"
+      },
+      "options": {
+        "descriptionAfterLandmark": "</figure>"
+      },
+      "title": "The Verge"
+    },
+    "slashdot": {
+      "url": "https://rss.slashdot.org/Slashdot/slashdotMain",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "description"
+      },
+      "title": "Slashdot"
+    },
+    "arstechnica": {
+      "url": "https://arstechnica.com/feed/?t=d5785ff928582c2b5cb9a245eab61815",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "descriptionAfterLandmark"
+      },
+      "options": {
+        "descriptionAfterLandmark": "</figure>"
+      },
+      "title": "Ars Technica"
+    },
+    "bbc": {
+      "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "titleWithDescription"
+      },
+      "title": "BBC News - Technology"
+    },
+    "bleepingcomputer": {
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "lastUpdated",
+        "parser": "feed"
+      },
+      "title": "BleepingComputer"
+    },
+    "theregister": {
+      "url": "https://www.theregister.com/headlines.atom",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "titleWithDescription"
+      },
+      "title": "The Register"
+    },
+    "techdirt": {
+      "url": "https://www.techdirt.com/feed/",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "lastUpdated",
+        "parser": "feed"
+      },
+      "title": "Techdirt"
+    },
+    "torrentfreak": {
+      "url": "https://torrentfreak.com/feed/",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "lastUpdated",
+        "parser": "feed",
+        "formatter": "title"
+      },
+      "title": "TorrentFreak"
+    },
+    "theconversation": {
+      "url": "https://theconversation.com/au/technology/articles.atom",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "title",
+        "picker": [
+          {
+            "name": "grep",
+            "options": {
+              "keywords": [
+                "AI",
+                "Twitter",
+                "Encryption",
+                "Tiktok",
+                "instagram",
+                "facebook",
+                "drones",
+                "computer",
+                "computers"
+              ]
+            }
+          },
+          "lastPosted"
+        ]
+      },
+      "title": "Science + Technology – The Conversation"
+    },
+    "hackaday": {
+      "url": "https://hackaday.com/feed/",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "lastUpdated",
+        "parser": "feed",
+        "formatter": "titleWithDescription"
+      },
+      "title": "Hackaday"
+    },
+    "mashabletech": {
+      "title": "Mashable Tech",
+      "url": "https://mashable.com/feeds/rss/tech",
+      "strategies": {
+        "destination": "textFile",
+        "fetch": "lastUpdated",
+        "parser": "feed",
+        "formatter": "description",
+        "picker": [
+          {
+            "name": "grep",
+            "options": {
+              "excludes": ["/deals"]
+            }
+          },
+          "lastPosted"
+        ]
+      }
+    }
+  }
+}
