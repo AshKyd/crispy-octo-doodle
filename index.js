@@ -94,9 +94,11 @@ async function runLoop() {
   setTimeout(runLoop, 1000 * 60 * 7);
 }
 
-fetch(config.strategies.lastUpdatedFeed)
-  .then((res) => res.text())
-  .then(async (text) => {
+(config.strategies.lastUpdatedFeed
+  ? fetch(config.strategies.lastUpdatedFeed).then((res) => res.text())
+  : Promise.resolve()
+).then(async (text) => {
+  if (text) {
     // get the last post date from Mastodon and use it to reset everything
     const feed = await parserStrategies.parseFeed(text);
     const lastPostDate = new Date(feed[0].date);
@@ -104,9 +106,9 @@ fetch(config.strategies.lastUpdatedFeed)
       config.items[key].lastPosted = lastPostDate;
       config.items[key].lastUpdated = lastPostDate;
     });
-
     console.log("starting", "starting", "lastPostDate", lastPostDate);
+  }
 
-    // OK now we can go
-    runLoop();
-  });
+  // OK now we can go
+  runLoop();
+});
