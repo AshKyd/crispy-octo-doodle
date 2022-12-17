@@ -90,6 +90,8 @@ async function runLoop() {
     return await runFeed(config, feed);
   });
   console.log("done all them");
+
+  setTimeout(runLoop, 1000 * 60 * 7);
 }
 
 fetch(config.strategies.lastUpdatedFeed)
