@@ -46,6 +46,10 @@ export function description(config, feed, item, options) {
   if (!sentence || sentence.length < 50) {
     return title(config, feed, item, options);
   }
+
+  if (sentence.toLowerCase().startsWith("i ")) {
+    sentence = `“${sentence}”`;
+  }
   return [sentence, item.link].join("\n\n");
 }
 
