@@ -153,6 +153,15 @@
           "lastPosted"
         ]
       }
+    },
+    "abcnewstech": {
+      "url": "https://www.abc.net.au/news/feed/2302/rss.xml",
+      "strategies": {
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "description"
+      },
+      "title": "ABC News Tech"
     }
   }
 }
