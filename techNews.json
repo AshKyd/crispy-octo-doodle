@@ -31,7 +31,7 @@
         "destination": "textFile",
         "fetch": "full",
         "parser": "feed",
-        "formatter": "description"
+        "formatter": "titleWithDescription"
       },
       "title": "Slashdot"
     },
@@ -131,7 +131,7 @@
         "destination": "textFile",
         "fetch": "lastUpdated",
         "parser": "feed",
-        "formatter": "titleWithDescription"
+        "formatter": "title"
       },
       "title": "Hackaday"
     },
