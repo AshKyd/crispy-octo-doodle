@@ -47,17 +47,7 @@
         "descriptionAfterLandmark": "</figure>"
       },
       "title": "Ars Technica"
-    },
-    "bbc": {
-      "url": "https://feeds.bbci.co.uk/news/technology/rss.xml",
-      "strategies": {
-        "destination": "textFile",
-        "fetch": "full",
-        "parser": "feed",
-        "formatter": "titleWithDescription"
-      },
-      "title": "BBC News - Technology"
-    },
+    }
     "bleepingcomputer": {
       "url": "https://www.bleepingcomputer.com/feed/",
       "strategies": {
