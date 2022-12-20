@@ -1,15 +1,73 @@
 {
+  "filename": "techNews.json",
   "strategies": {
     "lastUpdatedFeed": "https://sendne.ws/@tech.rss",
+    "mastodonSuffix": "TECH",
     "destination": [
-      { "name": "textFile" },
+      {
+        "name": "textFile"
+      },
       {
         "name": "mastodon",
         "options": {
           "visibility": "unlisted"
         }
       }
-    ]
+    ],
+    "hashtags": {
+      "ai": "#AI",
+      "artificial intelligence": "#AI",
+      "twitter": "#Twitter",
+      "elon musk": "#ElonMusk",
+      "microsoft": "#Microsoft",
+      "google": "#Google",
+      "apple": "#Apple",
+      "meta": "#Meta",
+      "netflix": "#Netflix",
+      "bike": "#bike",
+      "chrome": "#chrome",
+      "safari": "#Safari",
+      "firefox": "#Firefox",
+      "microsoft edge": "#Edge",
+      "windows": "#Windows",
+      "linux": "#Linux",
+      "MacOS": "#MacOS",
+      "ios": "#iOS",
+      "android": "#android",
+      "amazon": "#Amazon",
+      "antitrust": "#Antitrust",
+      "windows 11": "#Windows11",
+      "ransomware": "#Ransomware",
+      "minecraft": "#Minecraft",
+      "github": "#GitHub",
+      "2fa": "#2FA",
+      "usb type c": "#USBC",
+      "usbc": "#USBC",
+      "usb c": "#usbc",
+      "5g": "#5g",
+      "4g": "#4g",
+      "3g": "#3g",
+      "wifi": "#WiFi",
+      "mastodon": "#Mastodon",
+      "covid": "#Covid",
+      "misinformation": "#misinformation",
+      "trump": "#Trump",
+      "theranos": "#Theranos",
+      "ftx": "#FTX",
+      "automation": "#automation",
+      "cloud computing": "#CloudComputing",
+      "iphone": "#iPhone",
+      "ipad": "#iPad",
+      "hydrogen": "#hydrogen",
+      "drones": "#drones",
+      "clean energy": "#CleanEnergy",
+      "solar": "#solar",
+      "space": "#space",
+      "open ai": "#OpenAI",
+      "chatgpt": "#ChatGPT",
+      "gpt-3": "#GPT3",
+      "gpt3": "#GPT3"
+    }
   },
   "items": {
     "theverge": {
@@ -23,7 +81,9 @@
       "options": {
         "descriptionAfterLandmark": "</figure>"
       },
-      "title": "The Verge"
+      "title": "The Verge",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:56.715Z"
     },
     "slashdot": {
       "url": "https://rss.slashdot.org/Slashdot/slashdotMain",
@@ -33,7 +93,9 @@
         "parser": "feed",
         "formatter": "titleWithDescription"
       },
-      "title": "Slashdot"
+      "title": "Slashdot",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.557Z"
     },
     "arstechnica": {
       "url": "https://arstechnica.com/feed/?t=d5785ff928582c2b5cb9a245eab61815",
@@ -46,7 +108,9 @@
       "options": {
         "descriptionAfterLandmark": "</figure>"
       },
-      "title": "Ars Technica"
+      "title": "Ars Technica",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:58.762Z"
     },
     "bleepingcomputer": {
       "url": "https://www.bleepingcomputer.com/feed/",
@@ -55,7 +119,9 @@
         "fetch": "lastUpdated",
         "parser": "feed"
       },
-      "title": "BleepingComputer"
+      "title": "BleepingComputer",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.837Z"
     },
     "theregister": {
       "url": "https://www.theregister.com/headlines.atom",
@@ -65,7 +131,9 @@
         "parser": "feed",
         "formatter": "titleWithDescription"
       },
-      "title": "The Register"
+      "title": "The Register",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:56.839Z"
     },
     "techdirt": {
       "url": "https://www.techdirt.com/feed/",
@@ -74,7 +142,9 @@
         "fetch": "lastUpdated",
         "parser": "feed"
       },
-      "title": "Techdirt"
+      "title": "Techdirt",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.776Z"
     },
     "torrentfreak": {
       "url": "https://torrentfreak.com/feed/",
@@ -84,7 +154,9 @@
         "parser": "feed",
         "formatter": "title"
       },
-      "title": "TorrentFreak"
+      "title": "TorrentFreak",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:59.900Z"
     },
     "theconversation": {
       "url": "https://theconversation.com/au/technology/articles.atom",
@@ -113,7 +185,9 @@
           "lastPosted"
         ]
       },
-      "title": "Science + Technology – The Conversation"
+      "title": "Science + Technology – The Conversation",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.910Z"
     },
     "hackaday": {
       "url": "https://hackaday.com/feed/",
@@ -123,7 +197,9 @@
         "parser": "feed",
         "formatter": "title"
       },
-      "title": "Hackaday"
+      "title": "Hackaday",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:58.051Z"
     },
     "mashabletech": {
       "title": "Mashable Tech",
@@ -142,7 +218,9 @@
           },
           "lastPosted"
         ]
-      }
+      },
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:45:00.131Z"
     },
     "abcnewstech": {
       "url": "https://www.abc.net.au/news/feed/2302/rss.xml",
@@ -151,7 +229,9 @@
         "parser": "feed",
         "formatter": "description"
       },
-      "title": "ABC News Tech"
+      "title": "ABC News Tech",
+      "lastPosted": "2022-12-20T10:06:13.000Z",
+      "lastUpdated": "2022-12-20T10:44:58.625Z"
     }
   }
 }

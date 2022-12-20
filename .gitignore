@@ -3,4 +3,6 @@ node_modules
 .env.production
 .DS_Store
 techNews-state.json
+AustraliaCommentary-state.json
 posts.txt
+wip

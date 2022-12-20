@@ -80,3 +80,12 @@ export function titleWithDescription(config, feed, item, options) {
 
   return [post, item.link].join("\n\n");
 }
+
+export function hashtags(config, feed, item, options) {
+  const replacements = config.strategies.hashtags;
+  let newText = item;
+  Object.entries(replacements).forEach((source, replacement) => {
+    newText = newText.replace(source, replacement);
+  });
+  return newText;
+}

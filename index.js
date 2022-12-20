@@ -9,19 +9,20 @@ import * as parserStrategies from "./strategies/parser.js";
 import * as pickerStrategies from "./strategies/picker.js";
 import * as formatterStrategies from "./strategies/formatter.js";
 import * as destinationStrategies from "./strategies/destination.js";
-program.requiredOption("-f, --feed <url>");
+program.requiredOption("-c, --config-dir <url>");
 
 program.parse();
 
 const options = program.opts();
 
-const filename = path.resolve(process.cwd(), options.feed);
-const stateFilename = filename.replace(".json", "-state.json");
-let config = JSON.parse(fs.readFileSync(filename, "utf8"));
-
-function updateConfig() {
-  fs.writeFileSync(stateFilename, JSON.stringify(config, null, 2));
-}
+const dir = path.resolve(process.cwd(), options.configDir);
+const configs = fs
+  .readdirSync(dir)
+  .filter((filename) => !filename.includes("-state.json"))
+  .map((filename) => ({
+    filename,
+    ...JSON.parse(fs.readFileSync(path.resolve(dir, filename), "utf-8")),
+  }));
 
 async function runStrategy(strategies, strategy, config, feed, item) {
   const normalisedStrategy = (Array.isArray(strategy) ? strategy : [strategy])
@@ -43,8 +44,10 @@ async function runStrategy(strategies, strategy, config, feed, item) {
 
 async function runFeed(config, feed) {
   try {
-    await fetchStrategies[feed.strategies.fetch || "full"](feed);
-    await parserStrategies[feed.strategies.parser || "feed"](feed);
+    await fetchStrategies[feed.strategies.fetch || "full"](config, feed);
+    await parserStrategies[feed.strategies.parser || "feed"](config, feed);
+
+    debugger;
 
     // pick out posts
     const newPosts = await runStrategy(
@@ -80,35 +83,48 @@ async function runFeed(config, feed) {
       })
     );
   } catch (e) {
-    console.error("ohh no", e);
+    console.error(config.filename, "ohno", e);
   }
-  updateConfig();
+  fs.writeFileSync(
+    path.resolve(dir, config.filename.replace(".json", "-state.json")),
+    JSON.stringify(config, null, 2)
+  );
 }
 
-async function runLoop() {
+async function runLoop(config) {
   await async.eachLimit(Object.values(config.items), 4, async (feed) => {
     return await runFeed(config, feed);
   });
-  console.log("done all them");
+  console.log(config.filename, "done");
 
-  setTimeout(runLoop, 1000 * 60 * 7);
+  setTimeout(() => runLoop(config), 1000 * 60 * 7);
 }
 
-(config.strategies.lastUpdatedFeed
-  ? fetch(config.strategies.lastUpdatedFeed).then((res) => res.text())
-  : Promise.resolve()
-).then(async (text) => {
-  if (text) {
-    // get the last post date from Mastodon and use it to reset everything
-    const feed = await parserStrategies.parseFeed(text);
-    const lastPostDate = new Date(feed[0].date);
-    Object.keys(config.items).forEach((key) => {
-      config.items[key].lastPosted = lastPostDate;
-      config.items[key].lastUpdated = lastPostDate;
-    });
-    console.log("starting", "starting", "lastPostDate", lastPostDate);
-  }
+function startConfig(config) {
+  (config.strategies.lastUpdatedFeed
+    ? fetch(config.strategies.lastUpdatedFeed).then((res) => res.text())
+    : Promise.resolve()
+  ).then(async (text) => {
+    if (text) {
+      // get the last post date from Mastodon and use it to reset everything
+      const feed = await parserStrategies.parseFeed(config, text);
+      const lastPostDate = new Date(feed[0].date);
+      Object.keys(config.items).forEach((key) => {
+        config.items[key].lastPosted = lastPostDate;
+        config.items[key].lastUpdated = lastPostDate;
+      });
+      console.log(
+        config.filename,
+        "starting",
+        "starting",
+        "lastPostDate",
+        lastPostDate
+      );
+    }
 
-  // OK now we can go
-  runLoop();
-});
+    // OK now we can go
+    runLoop(config);
+  });
+}
+
+configs.forEach(startConfig);

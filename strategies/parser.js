@@ -1,13 +1,13 @@
 import FeedParser from "feedparser";
 import Stream from "stream";
 
-export async function parseFeed(text) {
+export async function parseFeed(config, text) {
   const items = [];
   let meta = {};
   await new Promise((resolve, reject) => {
     var feedParser = new FeedParser()
       .on("error", (e) => {
-        console.error("feedParser broke", e);
+        console.error(config.filename, "feedParser broke", e);
         throw e;
       })
       .on("readable", function () {
@@ -29,8 +29,8 @@ export async function parseFeed(text) {
   return items;
 }
 
-export async function feed(feed) {
-  const items = await parseFeed(feed.text);
+export async function feed(config, feed) {
+  const items = await parseFeed(config, feed.text);
   return Object.assign(feed, {
     parsed: items,
   });

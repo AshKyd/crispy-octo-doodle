@@ -1,0 +1,118 @@
+{
+  "filename": "AustraliaCommentary.json",
+  "strategies": {
+    "lastUpdatedFeed": "https://sendne.ws/@AusPolOpinion.rss",
+    "mastodonSuffix": "AUSCOMM",
+    "destination": [
+      {
+        "name": "textFile"
+      },
+      {
+        "name": "mastodon",
+        "options": {
+          "visibility": "unlisted"
+        }
+      }
+    ],
+    "hashtags": {
+      "ai": "#AI",
+      "artificial intelligence": "#AI",
+      "twitter": "#Twitter",
+      "elon musk": "#ElonMusk",
+      "microsoft": "#Microsoft",
+      "google": "#Google",
+      "apple": "#Apple",
+      "meta": "#Meta",
+      "netflix": "#Netflix",
+      "bike": "#bike",
+      "chrome": "#chrome",
+      "safari": "#Safari",
+      "firefox": "#Firefox",
+      "microsoft edge": "#Edge",
+      "windows": "#Windows",
+      "linux": "#Linux",
+      "MacOS": "#MacOS",
+      "ios": "#iOS",
+      "android": "#android",
+      "amazon": "#Amazon",
+      "antitrust": "#Antitrust",
+      "windows 11": "#Windows11",
+      "ransomware": "#Ransomware",
+      "minecraft": "#Minecraft",
+      "github": "#GitHub",
+      "2fa": "#2FA",
+      "usb type c": "#USBC",
+      "usbc": "#USBC",
+      "usb c": "#usbc",
+      "5g": "#5g",
+      "4g": "#4g",
+      "3g": "#3g",
+      "wifi": "#WiFi",
+      "mastodon": "#Mastodon",
+      "covid": "#Covid",
+      "misinformation": "#misinformation",
+      "trump": "#Trump",
+      "theranos": "#Theranos",
+      "ftx": "#FTX",
+      "automation": "#automation",
+      "cloud computing": "#CloudComputing",
+      "iphone": "#iPhone",
+      "ipad": "#iPad",
+      "hydrogen": "#hydrogen",
+      "drones": "#drones",
+      "clean energy": "#CleanEnergy",
+      "solar": "#solar",
+      "space": "#space",
+      "open ai": "#OpenAI",
+      "chatgpt": "#ChatGPT",
+      "gpt-3": "#GPT3",
+      "gpt3": "#GPT3"
+    }
+  },
+  "items": {
+    "theguardiancommentisfree": {
+      "url": "https://www.theguardian.com/commentisfree/commentisfree+australia-news/australia-news/rss",
+      "strategies": {
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "title"
+      },
+      "title": "The Guardian Comment is Free",
+      "lastPosted": "2022-12-20T09:01:30.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.183Z"
+    },
+    "abcanalysisandopinion": {
+      "url": "https://www.abc.net.au/news/feed/7571224/rss.xml",
+      "strategies": {
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "description"
+      },
+      "title": "ABC Analysis & Opinion",
+      "lastPosted": "2022-12-20T09:01:30.000Z",
+      "lastUpdated": "2022-12-20T10:44:58.171Z"
+    },
+    "theconversationanalysis": {
+      "url": "https://theconversation.com/au/home-page/articles.atom",
+      "strategies": {
+        "fetch": "full",
+        "parser": "feed",
+        "formatter": "title"
+      },
+      "title": "The Conversation Analysis",
+      "lastPosted": "2022-12-20T09:01:30.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.123Z"
+    },
+    "theshot": {
+      "url": "https://theshot.net.au/feed/",
+      "strategies": {
+        "fetch": "lastUpdated",
+        "parser": "feed",
+        "formatter": "titleWithDescription"
+      },
+      "title": "The Shot",
+      "lastPosted": "2022-12-20T09:01:30.000Z",
+      "lastUpdated": "2022-12-20T10:44:57.230Z"
+    }
+  }
+}
