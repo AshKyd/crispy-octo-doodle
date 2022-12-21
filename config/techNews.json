@@ -129,7 +129,7 @@
         "destination": "textFile",
         "fetch": "full",
         "parser": "feed",
-        "formatter": "titleWithDescription"
+        "formatter": "title"
       },
       "title": "The Register",
       "lastPosted": "2022-12-20T10:06:13.000Z",
