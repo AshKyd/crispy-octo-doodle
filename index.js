@@ -93,7 +93,11 @@ async function runFeed(config, feed) {
 
 async function runLoop(config) {
   await async.eachLimit(Object.values(config.items), 4, async (feed) => {
-    return await runFeed(config, feed);
+    try{
+      await runFeed(config, feed);
+    }catch(e){
+      console.log(config.filename, 'runFeed failed', e.message);
+    }
   });
   console.log(config.filename, "done");
 
