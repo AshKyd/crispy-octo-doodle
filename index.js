@@ -115,7 +115,7 @@ function startConfig(config) {
       // const lastPostDate = new Date(feed[0].date);
 
       // Actually this is simpler, less scary. Let's see how it does.
-      const lastPostDate = 1674722136000; // for testing. Date.now();
+      const lastPostDate = Date.now();
 
       Object.keys(config.items).forEach((key) => {
         config.items[key].lastPosted = lastPostDate;
