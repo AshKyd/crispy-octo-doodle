@@ -16,7 +16,7 @@ setInterval(function mastodonQueueChecker() {
 
     mastodon(...item);
   });
-}, 1000 * 60);
+}, 1000 * 120);
 
 export async function textFile(config, feed, text) {
   fs.appendFileSync("posts.txt", text + "\n----------\n");
@@ -50,10 +50,6 @@ export async function mastodonQueued(...args) {
     queues[filename] = [];
   }
   const queue = queues[filename];
-
-  if (queue.length === 0) {
-    return mastodon(...args);
-  }
 
   queue.push(args);
 
