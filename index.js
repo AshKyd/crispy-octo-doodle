@@ -113,9 +113,12 @@ function startConfig(config) {
   ).then(async (text) => {
     if (text) {
       // get the last post date from Mastodon and use it to reset everything
-      const feed = await parserStrategies.parseFeed(config, text);
+      // const feed = await parserStrategies.parseFeed(config, text);
+      // const lastPostDate = new Date(feed[0].date);
 
-      const lastPostDate = new Date(feed[0].date);
+      // Actually this is simpler, less scary. Let's see how it does.
+      const lastPostDate = Date.now();
+
       Object.keys(config.items).forEach((key) => {
         config.items[key].lastPosted = lastPostDate;
         config.items[key].lastUpdated = lastPostDate;
