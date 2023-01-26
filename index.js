@@ -92,16 +92,16 @@ async function runFeed(config, feed) {
 }
 
 async function runLoop(config) {
-  await async.eachLimit(Object.values(config.items), 4, async (feed) => {
-    try{
-      await runFeed(config, feed);
-    }catch(e){
-      console.log(config.filename, 'runFeed failed', e.message);
-    }
-  });
-  console.log(config.filename, "done");
-
-  setTimeout(() => runLoop(config), 1000 * 60 * 7);
+  setInterval(() => {
+    async.eachLimit(Object.values(config.items), 4, async (feed) => {
+      try {
+        await runFeed(config, feed);
+      } catch (e) {
+        console.log(config.filename, "runFeed failed", e.message);
+      }
+    });
+    console.log(config.filename, "done");
+  }, 1000 * 60 * (config.interval || 7 + Math.random()));
 }
 
 function startConfig(config) {
@@ -112,6 +112,7 @@ function startConfig(config) {
     if (text) {
       // get the last post date from Mastodon and use it to reset everything
       const feed = await parserStrategies.parseFeed(config, text);
+
       const lastPostDate = new Date(feed[0].date);
       Object.keys(config.items).forEach((key) => {
         config.items[key].lastPosted = lastPostDate;
