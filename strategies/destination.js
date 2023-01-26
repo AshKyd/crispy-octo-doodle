@@ -45,10 +45,11 @@ function getMastodonEnvConfig(config) {
 }
 
 export async function mastodonQueued(...args) {
-  if (!queues[config.filename]) {
-    queues[config.filename] = [];
+  const filename = args[0].filename;
+  if (!queues[filename]) {
+    queues[filename] = [];
   }
-  const queue = queues[config.filename];
+  const queue = queues[filename];
 
   if (queue.length === 0) {
     return mastodon(...args);
@@ -57,7 +58,7 @@ export async function mastodonQueued(...args) {
   queue.push(args);
 
   console.log(
-    config.filename,
+    filename,
     "queued",
     "destination",
     "mastodon",
@@ -67,7 +68,7 @@ export async function mastodonQueued(...args) {
   if (queue.length > 10) {
     const item = queue.shift();
     console.log(
-      config.filename,
+      filename,
       "skipping",
       "destination",
       "mastodon",

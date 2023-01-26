@@ -47,8 +47,6 @@ async function runFeed(config, feed) {
     await fetchStrategies[feed.strategies.fetch || "full"](config, feed);
     await parserStrategies[feed.strategies.parser || "feed"](config, feed);
 
-    debugger;
-
     // pick out posts
     const newPosts = await runStrategy(
       pickerStrategies,
@@ -117,7 +115,7 @@ function startConfig(config) {
       // const lastPostDate = new Date(feed[0].date);
 
       // Actually this is simpler, less scary. Let's see how it does.
-      const lastPostDate = Date.now();
+      const lastPostDate = 1674722136000; // for testing. Date.now();
 
       Object.keys(config.items).forEach((key) => {
         config.items[key].lastPosted = lastPostDate;
