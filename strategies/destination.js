@@ -3,10 +3,15 @@ import fs from "fs";
 
 const queues = {};
 
-setInterval(function mastodonQueuedChecker() {
-  console.log(config.filename, "queue", "mastodonQueueChecker", "check");
-  Object.values(queues).forEach((queue) => {
+setInterval(function mastodonQueueChecker() {
+  Object.entries(queues).forEach(([configFile, queue]) => {
     const item = queue.shift();
+    console.log(
+      configFile,
+      "queue",
+      "mastodonQueueChecker",
+      item ? "empty" : "posting"
+    );
     if (!item) return;
 
     mastodon(...item);
