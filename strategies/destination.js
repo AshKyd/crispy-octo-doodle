@@ -1,6 +1,18 @@
 import { login } from "masto";
 import fs from "fs";
 
+const queues = {};
+
+setInterval(function mastodonQueuedChecker() {
+  console.log(config.filename, "queue", "mastodonQueueChecker", "check");
+  Object.values(queues).forEach((queue) => {
+    const item = queue.shift();
+    if (!item) return;
+
+    mastodon(...item);
+  });
+}, 1000 * 60);
+
 export async function textFile(config, feed, text) {
   fs.appendFileSync("posts.txt", text + "\n----------\n");
   return text;
@@ -25,6 +37,38 @@ function getMastodonEnvConfig(config) {
     throw new Error(accessTokenKey + " not set");
   }
   return mastodonConfig;
+}
+
+export async function mastodonQueued(...args) {
+  if (!queues[config.filename]) {
+    queues[config.filename] = [];
+  }
+  const queue = queues[config.filename];
+
+  if (queue.length === 0) {
+    return mastodon(...args);
+  }
+
+  queue.push(args);
+
+  console.log(
+    config.filename,
+    "queued",
+    "destination",
+    "mastodon",
+    args[2].split("\n")[0].slice(0, 20) + "…"
+  );
+
+  if (queue.length > 10) {
+    const item = queue.shift();
+    console.log(
+      config.filename,
+      "skipping",
+      "destination",
+      "mastodon",
+      item[2].split("\n")[0].slice(0, 20) + "…"
+    );
+  }
 }
 export async function mastodon(
   config,

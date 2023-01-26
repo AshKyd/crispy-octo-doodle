@@ -8,7 +8,7 @@
         "name": "textFile"
       },
       {
-        "name": "mastodon",
+        "name": "mastodonQueued",
         "options": {
           "visibility": "unlisted"
         }
