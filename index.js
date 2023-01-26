@@ -92,7 +92,7 @@ async function runFeed(config, feed) {
 }
 
 async function runLoop(config) {
-  setInterval(() => {
+  const _runLoop = () => {
     async.eachLimit(Object.values(config.items), 4, async (feed) => {
       try {
         await runFeed(config, feed);
@@ -101,7 +101,9 @@ async function runLoop(config) {
       }
     });
     console.log(config.filename, "done");
-  }, 1000 * 60 * (config.interval || 7 + Math.random()));
+  };
+  _runLoop();
+  setInterval(_runLoop, 1000 * 60 * 7 + Math.random());
 }
 
 function startConfig(config) {
