@@ -10,7 +10,7 @@ setInterval(function mastodonQueueChecker() {
       configFile,
       "queue",
       "mastodonQueueChecker",
-      item ? "empty" : "posting"
+      item ? "posting" : "empty"
     );
     if (!item) return;
 
