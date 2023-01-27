@@ -1,23 +1,6 @@
 import { login } from "masto";
 import fs from "fs";
 
-const queues = {};
-
-setInterval(function mastodonQueueChecker() {
-  Object.entries(queues).forEach(([configFile, queue]) => {
-    const item = queue.shift();
-    console.log(
-      configFile,
-      "queue",
-      "mastodonQueueChecker",
-      item ? "posting" : "empty"
-    );
-    if (!item) return;
-
-    mastodon(...item);
-  });
-}, 1000 * 120);
-
 export async function textFile(config, feed, text) {
   fs.appendFileSync("posts.txt", text + "\n----------\n");
   return text;
@@ -44,10 +27,27 @@ function getMastodonEnvConfig(config) {
   return mastodonConfig;
 }
 
+const queues = {};
 export async function mastodonQueued(...args) {
-  const filename = args[0].filename;
+  const [config, feed, text, options] = args;
+  const filename = config.filename;
   if (!queues[filename]) {
     queues[filename] = [];
+
+    setInterval(function mastodonQueueChecker() {
+      Object.entries(queues).forEach(([configFile, queue]) => {
+        const item = queue.shift();
+        console.log(
+          configFile,
+          "queue",
+          "mastodonQueueChecker",
+          item ? "posting" : "empty"
+        );
+        if (!item) return;
+
+        mastodon(...item);
+      });
+    }, 1000 * 60 * config.strategies.queueInterval || 2);
   }
   const queue = queues[filename];
 
@@ -58,7 +58,7 @@ export async function mastodonQueued(...args) {
     "queued",
     "destination",
     "mastodon",
-    args[2].split("\n")[0].slice(0, 20) + "…"
+    text.split("\n")[0].slice(0, 20) + "…"
   );
 
   if (queue.length > 10) {
