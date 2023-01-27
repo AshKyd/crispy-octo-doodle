@@ -52,6 +52,7 @@ export async function mastodonQueued(...args) {
   const queue = queues[filename];
 
   queue.push(args);
+  feed.lastPosted = Date.now();
 
   console.log(
     filename,
