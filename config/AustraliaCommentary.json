@@ -3,13 +3,13 @@
   "strategies": {
     "lastUpdatedFeed": "https://sendne.ws/@AusPolOpinion.rss",
     "mastodonSuffix": "AUSCOMM",
-    "queueInterval": 14,
+    "queueInterval": 21,
     "destination": [
       {
         "name": "textFile"
       },
       {
-        "name": "mastodon",
+        "name": "mastodonQueued",
         "options": {
           "visibility": "unlisted"
         }
