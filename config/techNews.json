@@ -3,7 +3,7 @@
   "strategies": {
     "lastUpdatedFeed": "https://sendne.ws/@tech.rss",
     "mastodonSuffix": "TECH",
-    "queueInterval": 7,
+    "queueInterval": 14,
     "destination": [
       {
         "name": "textFile"
